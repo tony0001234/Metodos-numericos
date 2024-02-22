@@ -50,19 +50,19 @@ void menu(){
 
 void cabezaTabla(){//creo un proceso de tipo vacio, ya que no necesito que me de una respuesta como una funcion, sino que realize una porcion de codigo, enviandole a la propia funcion ningun parametro, ya que solo pintara la consola.
 	system("cls");//codigo del cmd para limpiar la consola 
-	cout<<"-----------------------------------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
-	cout<<"Iteracion      Numero Po            Numero P              Numero f(p)             Error Absoluto                   Error Relativo            "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
-	cout<<"-----------------------------------------------------------------------------------------------------------------------"<< endl;
+	cout<<"---------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
+	cout<<"Iteracion   Numero Po       Numero P        Numero f(p)     Error Absoluto    Error Relativo            "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
+	cout<<"---------------------------------------------------------------------------------------------"<< endl;
 }
 
 void contTabla(int ite, float nP0, float nP, float Fp, float erA, float erR){//en este proceso si envio parametros para la correcta colocacion de los datos.
 	if(ite<=9){//un condicional if, que indica que si se cumple ite menor o igual a 9 realizara el contenido dentro del mismo, solo corre un espacio el codigo dependiendo si las iteraciones son de 1 o 2 digitos, ya que si no se veran desfazadas.
-		cout<<"------------------------------------------------------------------------------------------------------------------------"<< endl;
-		cout<<" "<<ite<<"            "<<fixed<<setprecision(15)<<nP0<<"     "<<fixed<<setprecision(15)<<nP<<"     "<<fixed<<setprecision(15)<<Fp<<"     "<<fixed<<setprecision(15)<<erA<<"     "<<fixed<<setprecision(15)<<erR<<endl;
+		cout<<"---------------------------------------------------------------------------------------------"<< endl;
+		cout<<" "<<ite<<"          "<<fixed<<setprecision(11)<<nP0<<"   "<<fixed<<setprecision(11)<<nP<<"   "<<fixed<<setprecision(11)<<Fp<<"   "<<fixed<<setprecision(11)<<erA<<"     "<<fixed<<setprecision(11)<<erR<<endl;
 	}
 	if(ite>9){//Este condicional es para todos los datos despues de la iteracion 9 ya que todo el contenido de la fila despues de la iteracion se debe correr un espacio a la izquierda para que no se vea desfazado.
-		cout<<"------------------------------------------------------------------------------------------------------------------------"<< endl;
-		cout<<" "<<ite<<"           "<<fixed<<setprecision(15)<<nP0<<"     "<<fixed<<setprecision(15)<<nP<<"     "<<fixed<<setprecision(15)<<Fp<<"     "<<fixed<<setprecision(15)<<erA<<"     "<<fixed<<setprecision(15)<<erR<<endl;
+		cout<<"----------------------------------------------------------------------------------------------"<< endl;
+		cout<<" "<<ite<<"          "<<fixed<<setprecision(11)<<nP0<<"   "<<fixed<<setprecision(11)<<nP<<"   "<<fixed<<setprecision(11)<<Fp<<"   "<<fixed<<setprecision(11)<<erA<<"     "<<fixed<<setprecision(11)<<erR<<endl;
 	}
 }
 
@@ -114,9 +114,9 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 		case 0:
 			system("cls");//limpio la consola 
 			goto menu;//realizo el salto a la etiqueta menu, para crear un semi-bucle
+			i=1;
 		break;
 		case 1:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -126,6 +126,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -141,9 +142,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -157,7 +156,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 2:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -167,6 +165,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -182,9 +182,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -198,7 +196,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 3:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -208,6 +205,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -223,9 +222,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -239,7 +236,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 4:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -249,6 +245,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -264,9 +262,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -280,7 +276,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 5:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -290,6 +285,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -305,9 +302,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -321,7 +316,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 6:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -331,6 +325,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = (pow(numeroP0, 2)-3);
 				prueba2 = (3/( pow(numeroP0, 2)-3 )  );
 				prueba3 = 1;
@@ -346,9 +342,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -362,7 +356,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 7:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -372,6 +365,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -387,9 +382,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -403,7 +396,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 8:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -413,6 +405,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -428,9 +422,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -444,7 +436,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 9:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -454,6 +445,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -469,9 +462,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -485,7 +476,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 10:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -495,6 +485,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -510,9 +502,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -526,7 +516,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 11:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -536,6 +525,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -551,9 +542,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -567,7 +556,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 12:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -577,6 +565,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = ( 3*pow(numeroP0, 2) +3 );
@@ -592,9 +582,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 4) - 3*pow(numeroP, 2) -3);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -608,7 +596,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 13:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -618,6 +605,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				prueba1 = 1;
 				prueba2 = 1;
 				prueba3 = 1;
@@ -633,9 +622,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 3) + 4*pow(numeroP, 2) -10);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -649,7 +636,6 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto parar;
 		break;
 		case 14:
-			ingreseBien:
 			system("cls");//limpio la consola
 
 			cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
@@ -659,14 +645,14 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
 			while (i <= IT)
 			{
+				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
+
 				numeroP = (pow(  ((-4*pow(numeroP0, 2))+10), 1/3)  );
 				errRel = (  abs(numeroP - numeroP0)  );
 				errAbs = abs((numeroP-numeroP0)/numeroP);
 				Fp = (pow(numeroP, 3) + 4*pow(numeroP, 2) -10);
 
-				contTabla(i, numeroP0, numeroP, Fp, errAbs, errRel);
-
-				if(errRel > TOL){
+				if(errRel < TOL){
 					cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
 					cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< numeroP << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 					cout<<"Con f(p): "<<fixed<<setprecision(15)<< numeroP << endl;
@@ -682,10 +668,12 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 			goto final;//nos manda con goto a la etiqueta final, que finaliza el programa
 		break;
 		default://si escribe cualquier otra cantidad no descrita en los casos anteriores ejecuta lo siguiente
+			system("cls");
 			cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
 		break;
 	}
 	parar://etiqueta parar para regresar al menu
+	i=1;
 	goto menu;//este goto nos devuelve al menu de inicio
 	final://etiqueta de final del programa, para finalmente salir de la ejecucion del mismo
 	return 0;//como es una funcion de tipo int debe en el final del mismo retornar un valor, en este caso lo deje default en 0
