@@ -10,10 +10,6 @@ void menu(){//creo una funcion vacia o proceso, vacia ya que no quiero que devue
 
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 
-	cout<<"0) Regresar a este menu." << endl;
-
-	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-
 	cout<<"1) f(x) = x^4 -3x^2 -3 = 0" << endl;
 
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
@@ -35,9 +31,20 @@ void menu(){//creo una funcion vacia o proceso, vacia ya que no quiero que devue
 
 void cabezaTabla(){//creo un proceso de tipo vacio, ya que no necesito que me de una respuesta como una funcion, sino que realize una porcion de codigo, enviandole a la propia funcion ningun parametro, ya que solo pintara la consola.
 	system("cls");//codigo del cmd para limpiar la consola 
-	cout<<"-----------------------------------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
-	cout<<"Iteracion      Numero A             Numero B              Numero P              f(p)                   Error            "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
-	cout<<"-----------------------------------------------------------------------------------------------------------------------"<< endl;
+	cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
+	cout<<"Iteracion       Numero p0           Numero fp0           Numero p            f(p)                  Error absoluto           "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
+	cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;
+}
+
+void contTabla(int ite, float nP0, float nfP0, float np, float nfp, float erAbs){//en este proceso si envio parametros para la correcta colocacion de los datos, pero igualmente es vacio para que se ejecute nada mas.
+	if(ite<=9){//un condicional if, que indica que si se cumple ite menor o igual a 9 realizara el contenido dentro del mismo, solo corre un espacio el codigo dependiendo si las iteraciones son de 1 o 2 digitos, ya que si no se veran desfazadas.
+		cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;
+		cout<<" "<<ite<<"           "<<fixed<<setprecision(15)<<nP0<<"   "<<fixed<<setprecision(15)<<nfP0<<"   "<<fixed<<setprecision(15)<<np<<"   "<<fixed<<setprecision(15)<<nfp<<"   "<<fixed<<setprecision(15)<<erAbs<<endl;//fixed<<setprecision(11) lo utilizo para dejar los parametros con 11 decimales
+	}
+	if(ite>9){//Este condicional es para todos los datos despues de la iteracion 9 ya que todo el contenido de la fila despues de la iteracion se debe correr un espacio a la izquierda para que no se vea desfazado.
+		cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;
+		cout<<""<<ite<<"          "<<fixed<<setprecision(15)<<nP0<<"   "<<fixed<<setprecision(15)<<nfP0<<"   "<<fixed<<setprecision(15)<<np<<"   "<<fixed<<setprecision(15)<<nfp<<"   "<<fixed<<setprecision(15)<<erAbs<<endl;
+	}
 }
 
 int main() {//funcion principal de tipo int, devuelve un valor entero, me da igual si es int o void ya que es simplemente la funcion principal de mi programa, y por el modo que plantee la programacion puedo hacerlo un vucle.
@@ -79,6 +86,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                     switch (secOpcion)
                     {
                     case 1:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
                         i = 1;
                         p0 = 1.0;
                         fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
@@ -86,14 +97,18 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         while (i <= IT)
                         {
                             p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
                             {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
                                 cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
                                 cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
                                 cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
                                 system("pause");
                                 break;
-                                }
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
                             i = i+1;
                             p0 = p;
                         }
@@ -105,6 +120,11 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         system("pause");
                     break;
                     
+                    case 6:
+                        system("cls");
+                        opcion = 0;
+                    break;
+
                     default:
                         system("cls");
                         cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
@@ -118,6 +138,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
             cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
             break;
         }
+        secOpcion = 0;
     }
         
 
