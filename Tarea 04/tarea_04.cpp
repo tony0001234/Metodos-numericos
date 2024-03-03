@@ -14,19 +14,24 @@ void menu(){//creo una funcion vacia o proceso, vacia ya que no quiero que devue
 
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 
-	cout<<"2) f(x) = x^3 -2x^2 -5 = 0" << endl;
+	cout<<"2) f(x) = x^3 -2x^2 -5 = 0 TOL = 10^-15" << endl;
 
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 
-	cout<<"3) f(x) = 2^x -6cos(x) = 0" << endl;
+    cout<<"3) f(x) = x^3 -2x^2 -5 = 0 TOL = 10^-20" << endl;
+
+	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
+
+
+	cout<<"4) f(x) = 2^x -6cos(x) = 0 TOL = 10^-15" << endl;
     
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 
-	cout<<"4) f(x) = 230x^4 +18x^3 +9x^2 -221x -9 = 0" << endl;
+	cout<<"5) f(x) = 230x^4 +18x^3 +9x^2 -221x -9 = 0" << endl;
 
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 
-	cout<<"5) Salir.";
+	cout<<"6) Salir.";
 }
 
 void cabezaTabla(){//creo un proceso de tipo vacio, ya que no necesito que me de una respuesta como una funcion, sino que realize una porcion de codigo, enviandole a la propia funcion ningun parametro, ya que solo pintara la consola.
@@ -52,7 +57,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
     int i = 1, IT = 100, opcion, secOpcion;
     float TOL = pow(10, -15), p0, fp0, dfp0, p, fp, errorAbs;
 
-    while (opcion != 5)
+    while (opcion != 6)
     {
         menu();
 
@@ -119,7 +124,142 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         i = 1;
                         system("pause");
                     break;
-                    
+                    case 2:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 1.5;
+                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 3:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 1.99;
+                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 4:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 2.75;
+                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 5:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 5;
+                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
                     case 6:
                         system("cls");
                         opcion = 0;
@@ -131,7 +271,609 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                     break;
                     }
                 }
-                
+            break;
+            case 2:
+                while (secOpcion != 6)
+                {
+                    system("cls");//limpio la consola
+                    cout<<"Eliga el valor con el que desea aproximar una solucion."<<endl;
+                    cout<<"1. p0 = -3"<<endl;
+                    cout<<"2. p0 = -2"<<endl;
+                    cout<<"3. p0 = -1"<<endl;
+                    cout<<"4. p0 = 0"<<endl;
+                    cout<<"5. p0 = 1"<<endl;
+                    cout<<"6. regresar"<<endl;
+
+                    if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+                        system("cls");//de ser asi, limpio la consola 
+                        cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+                        fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+                        opcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+                    }
+
+                    switch (secOpcion)
+                    {
+                    case 1:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -3;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 2:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -2;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 3:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -1;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 4:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 0;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 5:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 1;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 6:
+                        system("cls");
+                        opcion = 0;
+                    break;
+
+                    default:
+                        system("cls");
+                        cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+                    break;
+                    }
+                }
+            break;
+            case 3:
+                while (secOpcion != 6)
+                {
+                    system("cls");//limpio la consola
+                    cout<<"Eliga el valor con el que desea aproximar una solucion."<<endl;
+                    cout<<"1. p0 = -3"<<endl;
+                    cout<<"2. p0 = -2"<<endl;
+                    cout<<"3. p0 = -1"<<endl;
+                    cout<<"4. p0 = 0"<<endl;
+                    cout<<"5. p0 = 1"<<endl;
+                    cout<<"6. regresar"<<endl;
+
+                    if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+                        system("cls");//de ser asi, limpio la consola 
+                        cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+                        fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+                        opcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+                    }
+
+                    switch (secOpcion)
+                    {
+                    case 1:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        TOL = pow(10, -20);
+                        i = 1;
+                        p0 = -3;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 2:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -2;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 3:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -1;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 4:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 0;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 5:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 1;
+                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 6:
+                        system("cls");
+                        opcion = 0;
+                        TOL = pow(10, -15);
+                    break;
+                    default:
+                        system("cls");
+                        cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+                    break;
+                    }
+                }
+            break;
+            case 4:
+                while (secOpcion != 2)
+                {
+                    system("cls");//limpio la consola
+                    cout<<"Eliga el valor con el que desea aproximar una solucion."<<endl;
+                    cout<<"1. p0 = -6.5"<<endl;
+                    cout<<"2. Regresar"<<endl;
+
+
+                    if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+                        system("cls");//de ser asi, limpio la consola 
+                        cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+                        fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+                        opcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+                    }
+
+                    switch (secOpcion)
+                    {
+                    case 1:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -6.5;
+                        fp0 = (  (pow(2, p0)) -6*(cos(p0))  );
+                        dfp0 = (  6*sin(p0)  +   log10(2)*(pow(2, p0))  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 2:
+                        system("cls");
+                        opcion = 0;
+                    break;
+                    default:
+                        system("cls");
+                        cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+                    break;
+                    }
+                }
+            break;
+            case 5:
+                while (secOpcion != 4)
+                {
+                    system("cls");//limpio la consola
+                    cout<<"Eliga el valor con el que desea aproximar una solucion."<<endl;
+                    cout<<"1. p0 = -1"<<endl;
+                    cout<<"2. p0 = 0"<<endl;
+                    cout<<"3. p0 = 1"<<endl;
+                    cout<<"4. Regresar"<<endl;
+
+
+                    if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+                        system("cls");//de ser asi, limpio la consola 
+                        cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+                        fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+                        opcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+                    }
+
+                    switch (secOpcion)
+                    {
+                    case 1:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = -1;
+                        fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                        dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 2:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 0;
+                        fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                        dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 3:
+                        system("cls");//limpio la consola
+
+			            cabezaTabla();//llamo al proceso cabezaTabla(), mandando ningun valor dentro de los parentesis ya que no lo necesito, que solo pinta la cabezera de la tabla en la consola.
+
+                        i = 1;
+                        p0 = 1;
+                        fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                        dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
+                        while (i <= IT)
+                        {
+                            p = (p0-(fp0/dfp0));
+                            errorAbs = abs( (p-p0)/p );
+                            if (errorAbs < TOL)
+                            {
+                                contTabla(i, p0, fp0, p, fp, errorAbs);
+
+                                cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+                                cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+                                cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                                system("pause");
+                                break;
+                            }
+                            contTabla(i, p0, fp0, p, fp, errorAbs);
+                            i = i+1;
+                            p0 = p;
+                        }
+                        cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+					    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+					    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+                            
+                        i = 1;
+                        system("pause");
+                    break;
+                    case 4:
+                        system("cls");
+                        opcion = 0;
+                    break;
+                    default:
+                        system("cls");
+                        cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+                    break;
+                    }
+                }
             break;
             default:
             system("cls");
