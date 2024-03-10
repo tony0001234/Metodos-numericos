@@ -85,7 +85,7 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         system("cls");//de ser asi, limpio la consola 
                         cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
                         fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
-                        opcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+                        secOpcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
                     }
 
                     switch (secOpcion)
