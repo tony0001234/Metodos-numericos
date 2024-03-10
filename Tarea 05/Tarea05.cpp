@@ -42,29 +42,45 @@ void subMenu(){
 
 void cabezaTabla(){//creo un proceso de tipo vacio, ya que no necesito que me de una respuesta como una funcion, sino que realize una porcion de codigo, enviandole a la propia funcion ningun parametro, ya que solo pintara la consola.
 	system("cls");//codigo del cmd para limpiar la consola 
-	cout<<"------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
-	cout<<"Iteracion  Numero p0          Numero p1          Numero q0          Numero q1          Numero P           f(p)               Error Absoluto     "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
-	cout<<"------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;
+	cout<<"------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;//cout se utiliza para imprimir en consola el contenido dentro de los parentesis.
+	cout<<"Iteracion          Numero p0            Numero p1            Numero q0              Numero q1           Numero P                f(p)             Error Absoluto     "<< endl;//<< se puede usar para concatenar texto a desplegar, endl es una intruccion de salto de linea.
+	cout<<"------------------------------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;
 }
 
 void contTabla(int ite, float nP0, float nP1, float nQ0, float nQ1, float nP, float nFp, float errAbs){//en este proceso si envio parametros para la correcta colocacion de los datos, pero igualmente es vacio para que se ejecute nada mas.
 	string espacio = "    ";
 	if(ite<=9){//un condicional if, que indica que si se cumple ite menor o igual a 9 realizara el contenido dentro del mismo, solo corre un espacio el codigo dependiendo si las iteraciones son de 1 o 2 digitos, ya que si no se veran desfazadas.
-		cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;
+		cout<<"-------------------------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;
 		cout<<" "<<ite<<"           "<<fixed<<setprecision(15)<<nP0<<espacio<<fixed<<setprecision(15)<<nP1<<espacio<<fixed<<setprecision(15)<<nQ0<<espacio<<fixed<<setprecision(15)<<nQ1<<espacio<<fixed<<setprecision(15)<<nP<<espacio<<fixed<<setprecision(15)<<nFp<<espacio<<fixed<<setprecision(15)<<errAbs<<endl;//fixed<<setprecision(11) lo utilizo para dejar los parametros con 11 decimales
 	}
 	if(ite>9){//Este condicional es para todos los datos despues de la iteracion 9 ya que todo el contenido de la fila despues de la iteracion se debe correr un espacio a la izquierda para que no se vea desfazado.
-		cout<<"--------------------------------------------------------------------------------------------------------------------------------"<< endl;
+		cout<<"-------------------------------------------------------------------------------------------------------------------------------------------------------------------"<< endl;
 		cout<<""<<ite<<"           "<<fixed<<setprecision(15)<<nP0<<espacio<<fixed<<setprecision(15)<<nP1<<espacio<<fixed<<setprecision(15)<<nQ0<<espacio<<fixed<<setprecision(15)<<nQ1<<espacio<<fixed<<setprecision(15)<<nP<<espacio<<fixed<<setprecision(15)<<nFp<<espacio<<fixed<<setprecision(15)<<errAbs<<endl;
 	}
+}
+
+void mensajeExito(int i, float p, float fp){
+	cout<<"Proceso finalizado exitosamente en la iteracion: "<< i << endl;
+    cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+    cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;
+    system("pause");
+}
+
+void mensajeFracaso(int i, float p, float fp){
+	cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
+	cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+	cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;                          
+    system("pause");
 }
 
 int main(){
 	int IT = 100, i = 1, opcion, secOpcion;
 	float p0, p1, q0, q1, p, fp, errAb, TOL = pow(10, -10);
+	float ayuda, ayuda2, ayuda3, ayuda4;
 
 	while (opcion != 3)
 	{
+		i = 1;
 		menu();
 
 		if( (cin>>opcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
@@ -94,17 +110,221 @@ int main(){
 
 					cabezaTabla();
 
-					
+					p0 = -0.5;
+					p1 = 0;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
 
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
 				break;
-				
+				case 2:
+					system("cls");
+
+					cabezaTabla();
+
+					p0 = 0;
+					p1 = 0.5;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
+
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
+				break;
+				case 3:
+					system("cls");
+
+					cabezaTabla();
+
+					p0 = 1.5;
+					p1 = 2;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
+
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
+				break;
+				case 4:
+					system("cls");
+
+					cabezaTabla();
+
+					p0 = 2;
+					p1 = 2.5;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
+
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
+				break;
+				case 5:
+					system("cls");
+
+					cabezaTabla();
+
+					p0 = 3.5;
+					p1 = 4;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
+
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
+				break;
+				case 6:
+					system("cls");
+
+					cabezaTabla();
+
+					p0 = 9.5;
+					p1 = 10;
+					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
+					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					while (i <= IT)
+					{
+						ayuda = (q1 * ( p1-p0 )  );
+						ayuda2 = q1-q0;
+						p = (  p1 - (  ayuda  /  ayuda2 )  );
+						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						errAb = abs( (p-p1)/p );
+
+						if (errAb < TOL)
+						{
+							contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+							mensajeExito(i, p, fp);
+							break;
+						}
+						contTabla(i, p0, p1, q0, q1, p, fp, errAb);
+						i += 1;
+						p0 = p1;
+						q0 = q1;
+						p1 = p;
+						q1 = fp;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 1;
+				break;
 				default:
-					break;
+					system("cls");
+					cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+				break;
 				}
 			}
+		break;
+		case 2:
 			
 		break;
-		
 		default:
 			system("cls");
 			cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
