@@ -403,16 +403,16 @@ int main(){
 
 					cabezaTabla();
 
-					p0 = 9.5;
-					p1 = 10;
-					q0 = (  log(  (pow(p0, 2) + 1)  ) - (  exp(0.4*p0) * cos(M_PI*p0)  )  );
-					q1 = (  log(  (pow(p1, 2) + 1)  ) - (  exp(0.4*p1) * cos(M_PI*p1)  )  );
+					p0 = -6.5;
+					p1 = -5;
+					q0 = (  (pow(3, p0))  -  (6*cos(p0))  );
+					q1 = (  (pow(3, p1))  -  (6*cos(p1))  );
 					while (i <= IT)
 					{
 						ayuda = (q1 * ( p1-p0 )  );
 						ayuda2 = q1-q0;
 						p = (  p1 - (  ayuda  /  ayuda2 )  );
-						fp = (  log(  (pow(p, 2) + 1)  ) - (  exp(0.4*p) * cos(M_PI*p)  )  );
+						fp = (  (pow(3, p))  -  (6*cos(p))  );
 						errAb = abs( (p-p1)/p );
 
 						if (errAb < TOL)
