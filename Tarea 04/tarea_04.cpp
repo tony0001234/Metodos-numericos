@@ -97,10 +97,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1.0;
-                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
-                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                            dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -131,10 +131,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1.5;
-                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
-                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                            dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -165,10 +165,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1.99;
-                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
-                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                            dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -199,10 +199,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 2.75;
-                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
-                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                            dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -233,10 +233,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 5;
-                        fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
-                        dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 4)) -3*(pow(p0, 2))  - 3 );
+                            dfp0 = (  4*(pow(p0, 4))  -  6*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -300,10 +300,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -3;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -334,10 +334,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -2;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -368,10 +368,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -1;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -402,10 +402,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 0;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -436,10 +436,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -504,10 +504,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         TOL = pow(10, -20);
                         i = 1;
                         p0 = -3;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -538,10 +538,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -2;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -572,10 +572,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -1;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -606,10 +606,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 0;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -640,10 +640,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1;
-                        fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
-                        dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(p0, 3)) -2*(pow(p0, 2))  - 5 );
+                            dfp0 = (  3*(pow(p0, 2))  -  4*p0  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -704,10 +704,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = -6.5;
-                        fp0 = (  (pow(2, p0)) -6*(cos(p0))  );
-                        dfp0 = (  6*sin(p0)  +   log10(2)*(pow(2, p0))  );
                         while (i <= IT)
                         {
+                            fp0 = (  (pow(2, p0)) -6*(cos(p0))  );
+                            dfp0 = (  6*sin(p0)  +   log10(2)*(pow(2, p0))  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -773,6 +773,8 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
                         dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                         while (i <= IT)
                         {
+                            fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                            dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -803,10 +805,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 0;
-                        fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
-                        dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                         while (i <= IT)
                         {
+                            fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                            dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
@@ -837,10 +839,10 @@ int main() {//funcion principal de tipo int, devuelve un valor entero, me da igu
 
                         i = 1;
                         p0 = 1;
-                        fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
-                        dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                         while (i <= IT)
                         {
+                            fp0 = (  230*(pow(p0, 4))   +  18*(pow(p0, 3))  +  9*(pow(p0, 2))  -  221*p0  -  9 );
+                            dfp0 = (  920*(pow(p0, 3))  +  54*(pow(p0, 2))  +  18*p0  -221  );
                             p = (p0-(fp0/dfp0));
                             errorAbs = abs( (p-p0)/p );
                             if (errorAbs < TOL)
