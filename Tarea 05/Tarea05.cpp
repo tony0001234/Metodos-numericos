@@ -109,7 +109,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 
 	while (opcion != 3)//creo un bucle while que se puede leer mientras que opcion sea distinto de 3, realizara lo siguiente, este bucle me permite mantenerme en el primer menu del programa
 	{
-		i = 1;//igualo nuevamente mi variable i a 1 para que en futuras ejecuciones consecutivas siempre sea 1 al comienzo de cada bucle repetitivo
+		i = 2;//igualo nuevamente mi variable i a 1 para que en futuras ejecuciones consecutivas siempre sea 1 al comienzo de cada bucle repetitivo
 		menu();//llamo al proceso menu, que solo me imprime todas las opciones del menu en consola
 
 		if( (cin>>opcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
@@ -168,7 +168,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){//valido que mi bucle haya salido sin una respuesta previa, ya que si lo dejo sin if se darian 2 respuestas
 						mensajeFracaso(i, p, fp);//llamo a mi proceso de mensaje de fracaso mandando los valores que deseo que me muestre
 					}
-					i = 1;//igualo la variable i a 1 para seguir utilizando el programa de forma segura
+					i = 2;//igualo la variable i a 1 para seguir utilizando el programa de forma segura
 				break;//acaba el caso 1, a partir de aqui hasta el siguiente menu principal es lo mismo solo cambiando los valores
 				case 2:
 					system("cls");
@@ -203,7 +203,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				case 3:
 					system("cls");
@@ -238,7 +238,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				case 4:
 					system("cls");
@@ -273,7 +273,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				case 5:
 					system("cls");
@@ -308,7 +308,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				case 6:
 					system("cls");
@@ -343,7 +343,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				default://utilizo el caso default para cualquier otro numero que no este declarado ni mostrado en el menu
 					system("cls");//limpimo la pantalla
@@ -353,6 +353,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 			}
 		break;
 		case 2://inicio del menu en caso 2
+			i = 1;
 			TOL = pow(10, -15);//cambio mi tolerancia a 10*-15 para tener una tolerancia distita seguin el insiso de la tarea
 			while (secOpcion != 3)//comienzo mi while para mantenerme dentro del sub meni hasta que el valor se secOpcion sea 3
 			{
@@ -367,6 +368,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 				switch (secOpcion)//comienzo a validar el numero que introdujo el usuario
 				{
 				case 1://si introdujo el 1 se ejecuta el siguiente caso que es el Newton-Raphson
+					i = 1;
 					system("cls");//limpio la consola
 					
 					cabezaTablaRapson();//llamo a mi subproceso aislado para este inciso
@@ -399,6 +401,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					i =1;//igualo la varialbe a 1 para poder seguir usando el programa desde este sub menu
 					break;
 					case 2://inicio el caso 2 de la Secante, lo unico que cambia aqui son los valores y el calculo de las funciones ya que la funciones la misma que el sub menu anterior para poder igualarlos
+					i = 2;
 					system("cls");
 
 					cabezaTabla();
@@ -431,7 +434,7 @@ int main(){//creo la funcion prinipal como int para que al final returne 0 y no 
 					if(i >= 99){
 						mensajeFracaso(i, p, fp);
 					}
-					i = 1;
+					i = 2;
 				break;
 				default://utilizo el caso deafult para validar si el valor ingresado no esta en el submenu
 					system("cls");
