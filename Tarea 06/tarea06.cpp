@@ -50,11 +50,9 @@ void subMenu2(){
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
     cout<<"2. X0 = -1, x1 = -0.5, x2 = 0."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-    cout<<"3. X0 = 0, x1 = 0.5, x2 = 1."<<endl;
+	cout<<"3. X0 = 1, x1 = 1.5, x2 = 2."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-	cout<<"4. X0 = 1, x1 = 1.5, x2 = 2."<<endl;
-	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-    cout<<"6. Regresar."<<endl;
+    cout<<"4. Regresar."<<endl;
 }
 
 void subMenu3(){
@@ -63,15 +61,13 @@ void subMenu3(){
     cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
 	cout<<"1. X0 = -1.5, x1 = -1, x2 = -0.5."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-    cout<<"2. X0 = -0.5, x1 = 0, x2 = 0.5."<<endl;
+    cout<<"2. X0 = -0.00001, x1 = 0, x2 = 0.00001."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
     cout<<"3. X0 = 0.5, x1 = 1, x2 = 1.5."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-	cout<<"4. X0 = 3, x1 = 3.5, x2 = 4."<<endl;
+    cout<<"4. X0 = 8, x1 = 8.5, x2 = 9."<<endl;
 	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-    cout<<"5. X0 = 8, x1 = 8.5, x2 = 9."<<endl;
-	cout<< "" << endl;//imprimo en la consola todo el menu, con saltos de linea para que se vea bonito.
-    cout<<"6. Regresar."<<endl;
+    cout<<"5. Regresar."<<endl;
 }
 
 void cabezaTabla(){//creo un proceso de tipo vacio, ya que no necesito que me de una respuesta como una funcion, sino que realize una porcion de codigo, enviandole a la propia funcion ningun parametro, ya que solo pintara la consola.
@@ -104,12 +100,16 @@ void mensajeFracaso(int i, float p, float fp){// creo un proceso vacio solo para
 	cout<<"El metodo fracaso o procedimiento terminado sin exito en la iteracion: "<< i << endl;
 	cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
 	cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;                          
-    system("pause");
+}
+
+void mensajeParada(int i, float p, float fp){
+	cout<<"El metodo paro abruptamente en la iteracion: "<< i << endl;
+	cout<<"La solucion aproximada es p: "<<fixed<<setprecision(15)<< p << endl;//muestro el resultado usando fixed<<setprecision(15) para que el resultado me lo mustre con 15 decimales de presicion.
+	cout<<"Con f(p): "<<fixed<<setprecision(15)<< fp << endl;                          
 }
 
 bool pruebaCeroOk(float prueba){
 	if(prueba == 0){
-		cout<<"Error se quizo dividir entre cero.";
 		return false;
 	}
 	return true;
@@ -117,14 +117,21 @@ bool pruebaCeroOk(float prueba){
 
 bool pruebaNegativoOk(float prueba){
 	if( prueba < 0){
-		cout<<"La raiz es imaginaria.";
 		return false;
 	}
 	return true;
 }
 
 float calculoFuncion1(float x){
-	return pow(x, 5) + 11 * pow(x, 4) - 21 * pow(x, 3) - 10 * pow(x, 2) - 21 * x -5;
+	return pow(x, 5) + 11 * pow(x, 4) - 21 * pow(x, 3) - 10 * pow(x, 2) - 21 * x - 5;
+}
+
+float calculoFuncion2(float x){
+	return pow(x, 4) +  pow(x, 3) + 3 * pow(x, 2) + 2 *  x + 2;
+}
+
+float calculoFuncion3(float x){
+	return pow(x, 3) - 9 * pow(x, 2) + 12;
 }
 
 int main(){
@@ -161,7 +168,225 @@ int main(){
 				{
 				case 1:
 					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
 
+					x0 = -12;
+					x1 = -12.5;
+					x2 = -13;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion1(x0);
+					fx1 =   calculoFuncion1(x1);
+					fx2 =   calculoFuncion1(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion1(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion1(x0);
+						fx1 =   calculoFuncion1(x1);
+						fx2 =   calculoFuncion1(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 2:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = -7;
+					x1 = -6.5;
+					x2 = -6;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion1(x0);
+					fx1 =   calculoFuncion1(x1);
+					fx2 =   calculoFuncion1(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion1(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion1(x0);
+						fx1 =   calculoFuncion1(x1);
+						fx2 =   calculoFuncion1(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 3:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
 					cabezaTabla();
 
 					x0 = -1;
@@ -174,46 +399,64 @@ int main(){
 					fx1 =   calculoFuncion1(x1);
 					fx2 =   calculoFuncion1(x2);
 					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
 						system("pause");
 						break;
 					}
 					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
 						system("pause");
 						break;
 					}
-					s1 = (  (fx1 - fx0) / h1  );
-					s2 = (  (fx2 - fx1) / h2  );
-					d = (  (s2 - s1) / (h2 + h1)  );
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
 					while (i <= IT)
 					{
-						b = (s2 + h2 * d);
-						D = (  pow(b, 2) - 4 * fx2 * d  );
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
 						if( pruebaNegativoOk(D) == false){
 							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
 							system("pause");
 							break;
 						}else{
-							D = pow(D, 1/2); 
+							D = sqrt(D); 
 						}
 						ayudante1 = abs(  b - D  );
 						ayudante2 = abs(  b + D  );
 						if( ayudante1 < ayudante2){
-							E = (b + D);
+							E = b + D;
 						}else{
-							E = (b - D);
+							E = b - D;
 						}
 						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
 							system("pause");
 							break;
 						}
-						h = ( (-2 * fx2 ) / E );
+						h =  (-2 * fx2 ) / E ;
 						p = x2 + h;
 						fp = calculoFuncion1(p);
 						if( abs(h) < TOL ){
 							mensajeExito(i, p, fp);
 							break;
 						}
-						erroAbs = abs(  h  );
+						erroAbs = abs((p - x2) / p);
 						contTabla(i, p, fp, erroAbs);
 
 						x0 = x1;
@@ -225,16 +468,24 @@ int main(){
 						fx1 =   calculoFuncion1(x1);
 						fx2 =   calculoFuncion1(x2);
 						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
 							system("pause");
 							break;
 						}
 						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
 							system("pause");
 							break;
 						}
-						s1 = (  (fx1 - fx0) / h1  );
-						s2 = (  (fx2 - fx1) / h2  );
-						d = (  (s2 - s1) / (h2 + h1)  );
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
 						i += 1;
 					}
 					if(i >= 99){
@@ -242,7 +493,1029 @@ int main(){
 					}
 					i = 3;
 				break;
-				
+				case 4:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = 1.5;
+					x1 = 1.25;
+					x2 = 1;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion1(x0);
+					fx1 =   calculoFuncion1(x1);
+					fx2 =   calculoFuncion1(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion1(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion1(x0);
+						fx1 =   calculoFuncion1(x1);
+						fx2 =   calculoFuncion1(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 5:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = 2;
+					x1 = 2.5;
+					x2 = 3;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion1(x0);
+					fx1 =   calculoFuncion1(x1);
+					fx2 =   calculoFuncion1(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion1(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion1(x0);
+						fx1 =   calculoFuncion1(x1);
+						fx2 =   calculoFuncion1(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				default:
+					system("cls");//limpimo la pantalla
+					cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+				break;
+				}
+			}
+		break;
+		case 2:
+			while (secOpcion != 4)
+			{
+				subMenu2();
+
+				if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+					system("cls");//de ser asi, limpio la consola 
+					cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+					fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+					secOpcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+				}
+
+				switch (secOpcion)
+				{
+				case 1:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = -2;
+					x1 = -1.5;
+					x2 = -1;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion2(x0);
+					fx1 =   calculoFuncion2(x1);
+					fx2 =   calculoFuncion2(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion2(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion2(x0);
+						fx1 =   calculoFuncion2(x1);
+						fx2 =   calculoFuncion2(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 2:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = -1;
+					x1 = -0.5;
+					x2 = 0;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion2(x0);
+					fx1 =   calculoFuncion2(x1);
+					fx2 =   calculoFuncion2(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion2(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion2(x0);
+						fx1 =   calculoFuncion2(x1);
+						fx2 =   calculoFuncion2(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 3:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = 1;
+					x1 = 1.5;
+					x2 = 2;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion2(x0);
+					fx1 =   calculoFuncion2(x1);
+					fx2 =   calculoFuncion2(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion2(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion2(x0);
+						fx1 =   calculoFuncion2(x1);
+						fx2 =   calculoFuncion2(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				default:
+					system("cls");//limpimo la pantalla
+					cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
+				break;
+				}
+			}
+		break;
+		case 3:
+			while (secOpcion != 5)
+			{
+				subMenu3();
+
+				if( (cin>>secOpcion).fail() ){//compurebo si la entrada de datos falla, ya que el usuario puede ingresar un dato no valido, como una letra.
+					system("cls");//de ser asi, limpio la consola 
+					cin.clear();//reseteo los flags(uno o mas bits que almacenan valor binario o codigo)
+					fflush(stdin);//limpio el buffer(espacio de memoria para almacenar datos antes de procesarlos) de entrada
+					secOpcion = 99;//igual la variable opcion a 99 para que se vaya al caso default(por defecto) de mi condicional switch
+				}
+
+				switch (secOpcion)
+				{
+				case 1:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = -1.5;
+					x1 = -1;
+					x2 = -0.5;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion3(x0);
+					fx1 =   calculoFuncion3(x1);
+					fx2 =   calculoFuncion3(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion3(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion3(x0);
+						fx1 =   calculoFuncion3(x1);
+						fx2 =   calculoFuncion3(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 2:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = -0.00001;
+					x1 =  0;
+					x2 =  0.0001;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion3(x0);
+					fx1 =   calculoFuncion3(x1);
+					fx2 =   calculoFuncion3(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion3(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion3(x0);
+						fx1 =   calculoFuncion3(x1);
+						fx2 =   calculoFuncion3(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 3:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = 0.5;
+					x1 =  1;
+					x2 =  1.5;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion3(x0);
+					fx1 =   calculoFuncion3(x1);
+					fx2 =   calculoFuncion3(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion3(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion3(x0);
+						fx1 =   calculoFuncion3(x1);
+						fx2 =   calculoFuncion3(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
+				case 4:
+					system("cls");
+					p = 0, fp = 0, erroAbs = 0;
+					cabezaTabla();
+
+					x0 = 8;
+					x1 =  8.5;
+					x2 =  9;
+					h1 = x1 - x0;
+					h2 = x2 - x1;
+					
+					fx0 =   calculoFuncion3(x0);
+					fx1 =   calculoFuncion3(x1);
+					fx2 =   calculoFuncion3(x2);
+					if(	pruebaCeroOk(h1) == false ){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h1 primera apa: "<<h1<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					if( pruebaCeroOk(h2) == false){
+						contTabla(i, p, fp, erroAbs);
+						cout<<endl;
+						cout<<"Error se quizo dividir entre cero."<<endl;
+						cout<<"h2 primera apa: "<<h2<<endl;
+						mensajeParada(i, p, fp);
+						system("pause");
+						break;
+					}
+					s1 =   (fx1 - fx0) / h1  ;
+					s2 =   (fx2 - fx1) / h2  ;
+					d =   (s2 - s1) / (h2 + h1)  ;
+					while (i <= IT)
+					{
+						b = s2 + h2 * d;
+						D =  pow(b, 2) - 4 * fx2 * d  ;
+						if( pruebaNegativoOk(D) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"La raiz es imaginaria."<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}else{
+							D = sqrt(D); 
+						}
+						ayudante1 = abs(  b - D  );
+						ayudante2 = abs(  b + D  );
+						if( ayudante1 < ayudante2){
+							E = b + D;
+						}else{
+							E = b - D;
+						}
+						if(pruebaCeroOk(E) == false){
+							contTabla(i, p, fp, erroAbs);
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"E segunda apa: "<<E<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						h =  (-2 * fx2 ) / E ;
+						p = x2 + h;
+						fp = calculoFuncion3(p);
+						if( abs(h) < TOL ){
+							mensajeExito(i, p, fp);
+							break;
+						}
+						erroAbs = abs((p - x2) / p);
+						contTabla(i, p, fp, erroAbs);
+
+						x0 = x1;
+						x1 = x2;
+						x2 = p;
+						h1 = (x1 - x0);
+						h2 = (x2 - x1);
+						fx0 =   calculoFuncion3(x0);
+						fx1 =   calculoFuncion3(x1);
+						fx2 =   calculoFuncion3(x2);
+						if(	pruebaCeroOk(h1) == false ){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h1 segunda apa: "<<h1<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						if( pruebaCeroOk(h2) == false){
+							cout<<endl;
+							cout<<"Error se quizo dividir entre cero."<<endl;
+							cout<<"h2 segunda apa: "<<h2<<endl;
+							mensajeParada(i, p, fp);
+							system("pause");
+							break;
+						}
+						s1 =   (fx1 - fx0) / h1  ;
+						s2 =   (fx2 - fx1) / h2  ;
+						d =   (s2 - s1) / (h2 + h1)  ;
+						i += 1;
+					}
+					if(i >= 99){
+						mensajeFracaso(i, p, fp);
+					}
+					i = 3;
+				break;
 				default:
 					system("cls");//limpimo la pantalla
 					cout<< "Porfavor ingrese una opcion valida del menu."<< endl;//muestra el mensaje de que debe ingresar una opcion valida
